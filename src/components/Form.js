@@ -80,11 +80,13 @@ const Form = () => {
                 <p>{item.description}</p>
               </div>
             </div>
-            <button
-              className="text-red-500 flex flex-col items-end justify-end w-11/12 "
-              onClick={() => deleteNote(index)}>
-              X
-            </button>
+            <div className="text-white flex flex-col items-end justify-end w-11/12">
+              <button
+                className="bg-red-500 p-1 px-2 rounded-md flex flex-col items-center justify-center"
+                onClick={() => deleteNote(index)}>
+                X
+              </button>
+            </div>
           </div>
         ))}
       </div>
