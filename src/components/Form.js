@@ -1,16 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { HowInstall } from "./HowInstall";
+import { Info } from "./Info";
 const Form = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [deleteNotes, setDeleteNotes] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setNotes(JSON.parse(localStorage.getItem("Notes")));
       setLoading(false);
+      setDeleteNotes(false)
     }, 100);
-  }, [loading]);
+  }, [loading, deleteNotes]);
 
   const existingDataString =
     typeof window !== "undefined" ? localStorage.getItem("Notes") : null;
@@ -34,11 +38,16 @@ const Form = () => {
     console.log(index);
     const updatedDataArray = dataArray.filter((item, i) => i !== index);
     localStorage.setItem("Notes", JSON.stringify(updatedDataArray));
-    setLoading(true);
+    setDeleteNotes(true);
   };
   return (
     <div className="grid grid-cols-1 place-items-center gap-5">
-      <h1 className="text-2xl mt-4">To Do List</h1>
+      <div className="grid grid-cols-3 w-full place-content-between place-items-center">
+        <Info />
+        <h1 className="text-2xl mt-4">To Do List</h1>
+        <HowInstall />
+      </div>
+
       <form
         onSubmit={listHandler}
         className="grid grid-cols-1 w-4/12 gap-5 md:w-11/12 place-items-center">

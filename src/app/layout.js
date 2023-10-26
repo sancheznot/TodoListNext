@@ -6,6 +6,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Welcome to your list',
   description: 'Todo List',
+  manifest: "/manifest.json",
+  icons: {
+    apple: "/icon.png",
+  },
 }
 
 export default function RootLayout({ children }) {
